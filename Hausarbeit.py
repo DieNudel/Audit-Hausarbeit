@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from scipy.stats import ttest_ind, t
+from scipy.stats import ttest_ind, t, wilcoxon
 import matplotlib.pyplot as plt
 
 TRIM = .05
@@ -53,3 +53,7 @@ for i in range(5):
     plt.close()
 
     print("")
+
+###Select all of Weekday 1 < Weekday 2, choose random same amount as Weekday 1 out of Weekday 2 
+
+print(wilcoxon(df[df['Weekday'] == 0]['diff_ln_Adj Close'].dropna(), df[df['Weekday'] == 5]['diff_ln_Adj Close'].dropna()))
