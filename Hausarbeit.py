@@ -56,4 +56,11 @@ for i in range(5):
 
 ###Select all of Weekday 1 < Weekday 2, choose random same amount as Weekday 1 out of Weekday 2 
 
-print(wilcoxon(df[df['Weekday'] == 0]['diff_ln_Adj Close'].dropna(), df[df['Weekday'] == 5]['diff_ln_Adj Close'].dropna()))
+print(df[df['Weekday'] == 0].size)
+print(df[df['Weekday'] == 4].size)
+n=(min((df[df['Weekday'] == 0]['diff_ln_Adj Close'].dropna().size),(df[df['Weekday'] == 4]['diff_ln_Adj Close'].dropna().size)))
+
+
+
+print(wilcoxon(df[df['Weekday'] == 0]['diff_ln_Adj Close'].dropna().sample(n=n), df[df['Weekday'] == 4 ]['diff_ln_Adj Close'].dropna().sample(n=n)))
+
