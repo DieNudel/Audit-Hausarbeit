@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from scipy.stats import ttest_ind, t, wilcoxon
+from scipy.stats import ttest_ind, t, wilcoxon, ranksums
 import matplotlib.pyplot as plt
 
 TRIM = .05
@@ -60,7 +60,20 @@ print(df[df['Weekday'] == 0].size)
 print(df[df['Weekday'] == 4].size)
 n=(min((df[df['Weekday'] == 0]['diff_ln_Adj Close'].dropna().size),(df[df['Weekday'] == 4]['diff_ln_Adj Close'].dropna().size)))
 
+print(ranksums(df[df['Weekday'] == 0]['diff_ln_Adj Close'].dropna().sample(n=n), df[df['Weekday'] == 4 ]['diff_ln_Adj Close'].dropna().sample(n=n)))
+
+pvalue = float((input("pvalue eingabe")))
+
+if (pvalue < TRIM):
+        print("Reject null hypothesis")
+else:
+        print("Fail to reject null hypothesis")
 
 
-print(wilcoxon(df[df['Weekday'] == 0]['diff_ln_Adj Close'].dropna().sample(n=n), df[df['Weekday'] == 4 ]['diff_ln_Adj Close'].dropna().sample(n=n)))
+
+
+############
+#print(wilcoxon(df[df['Weekday'] == 0]['diff_ln_Adj Close'].dropna().sample(n=n), df[df['Weekday'] == 4 ]['diff_ln_Adj Close'].dropna().sample(n=n)))
+
+
 
