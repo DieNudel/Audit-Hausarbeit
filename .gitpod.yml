@@ -1,6 +1,6 @@
 tasks:
   - name: Install dependencies
-    init: pip install -r requirements.txt
+    init: pip install pip install --upgrade pip -r requirements.txt
 
 vscode:
   extensions:
@@ -11,3 +11,4 @@ vscode:
 
     - ms-toolsai.jupyter-keymap
     - ms-toolsai.jupyter-renderers
+####pip install -r requirements.txt
