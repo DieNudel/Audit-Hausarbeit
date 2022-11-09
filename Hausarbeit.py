@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from scipy.stats import ttest_ind, t, wilcoxon, ranksums
+from scipy.stats import ttest_ind, t, wilcoxon, ranksums, mannwhitneyu
 import matplotlib.pyplot as plt
 
 TRIM = .05
@@ -36,7 +36,7 @@ for i in range(5):
     print("p-value: ", p)
 
     critical = t.ppf(q=TRIM, df=len(
-        df[df['Weekday'] == i]['diff_ln_Adj Close'].dropna()) - 1)
+        df[df['Weekday'] == i]['diff_ln_Adj Close'].dropna()) - 2)
     print("Critical stuff:", end=" ")
     print(critical)
 
@@ -70,10 +70,30 @@ else:
         print("Fail to reject null hypothesis")
 
 
+print(mannwhitneyu(df[df['Weekday'] == 0]['diff_ln_Adj Close'].dropna().sample(n=n), df[df['Weekday'] == 4 ]['diff_ln_Adj Close'].dropna().sample(n=n)))
+
+if (pvalue < TRIM):
+        print("Reject null hypothesis")
+else:
+        print("Fail to reject null hypothesis")
+
 
 
 ############
 #print(wilcoxon(df[df['Weekday'] == 0]['diff_ln_Adj Close'].dropna().sample(n=n), df[df['Weekday'] == 4 ]['diff_ln_Adj Close'].dropna().sample(n=n)))
+
+##Unnötige Kack Statstiken
+
+for i in range(5): 
+    print(df[df['Weekday'] == i].size)
+    print(np.nanmax(df[df['Weekday'] == i]["diff_ln_Adj Close"]))
+    print(df["Date"][(df[df['Weekday'] == i]["diff_ln_Adj Close"].idxmax())])
+    print(np.nanmin(df[df['Weekday'] == i]["diff_ln_Adj Close"]))
+    print(df["Date"][(df[df['Weekday'] == i]["diff_ln_Adj Close"].idxmin())])
+    print(np.mean(df[df['Weekday'] == i]["diff_ln_Adj Close"]))
+    
+    
+   
 
 
 
