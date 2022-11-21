@@ -70,12 +70,12 @@ else:
         print("Fail to reject null hypothesis")
 
 
-print(mannwhitneyu(df[df['Weekday'] == 0]['diff_ln_Adj Close'].dropna().sample(n=n), df[df['Weekday'] == 4 ]['diff_ln_Adj Close'].dropna().sample(n=n)))
+# print(mannwhitneyu(df[df['Weekday'] == 0]['diff_ln_Adj Close'].dropna().sample(n=n), df[df['Weekday'] == 4 ]['diff_ln_Adj Close'].dropna().sample(n=n)))
 
-if (pvalue < TRIM):
-        print("Reject null hypothesis")
-else:
-        print("Fail to reject null hypothesis")
+# if (pvalue < TRIM):
+#         print("Reject null hypothesis")
+# else:
+#         print("Fail to reject null hypothesis")
 
 
 
