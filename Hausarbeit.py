@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from scipy.stats import ttest_ind, t, wilcoxon, ranksums, mannwhitneyu
+from scipy.stats import ttest_ind, t, wilcoxon, ranksums, mannwhitneyu, norm
 import matplotlib.pyplot as plt
 
 TRIM = .05
@@ -63,11 +63,20 @@ n=(min((df[df['Weekday'] == 0]['diff_ln_Adj Close'].dropna().size),(df[df['Weekd
 print(ranksums(df[df['Weekday'] == 0]['diff_ln_Adj Close'].dropna().sample(n=n), df[df['Weekday'] == 4 ]['diff_ln_Adj Close'].dropna().sample(n=n)))
 
 pvalue = float((input("pvalue eingabe")))
+#####R-(n(n1+1))/2
 
-if (pvalue < TRIM):
-        print("Reject null hypothesis")
+# zvalue = norm.ppf(pvalue/2)
+
+# criticalranksum = t.ppf(q=TRIM, df=len(
+#         df[df['Weekday'] == i]['diff_ln_Adj Close'].dropna()) - 2)
+# print("Critical stuff:", end=" ")
+# print(critical)
+# if (pvalue < criticalranksum and p < TRIM):
+
+if (p < TRIM):
+    print("Reject null hypothesis")
 else:
-        print("Fail to reject null hypothesis")
+    print("Fail to reject null hypothesis")
 
 
 # print(mannwhitneyu(df[df['Weekday'] == 0]['diff_ln_Adj Close'].dropna().sample(n=n), df[df['Weekday'] == 4 ]['diff_ln_Adj Close'].dropna().sample(n=n)))
