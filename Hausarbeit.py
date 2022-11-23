@@ -35,12 +35,13 @@ for i in range(5):
     print("t-stat: ", t_stat)
     print("p-value: ", p)
 
-    critical = t.ppf(q=TRIM, df=len(
-        df[df['Weekday'] == i]['diff_ln_Adj Close'].dropna()) - 2)
-    print("Critical stuff:", end=" ")
-    print(critical)
+    # critical = t.ppf(q=TRIM, df=len(
+    #     df[df['Weekday'] == i]['diff_ln_Adj Close'].dropna()) - 2)
+    # print("Critical stuff:", end=" ")
+    # print(critical)
 
-    if (t_stat < critical and p < TRIM):
+    # if (t_stat < critical and p < TRIM):
+    if (p < TRIM):
         print("Reject null hypothesis")
     else:
         print("Fail to reject null hypothesis")
