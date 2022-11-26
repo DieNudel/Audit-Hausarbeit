@@ -74,7 +74,7 @@ pvalue = float((input("pvalue eingabe")))
 # print(critical)
 # if (pvalue < criticalranksum and p < TRIM):
 
-if (p < TRIM):
+if (pvalue < TRIM):
     print("Reject null hypothesis")
 else:
     print("Fail to reject null hypothesis")
